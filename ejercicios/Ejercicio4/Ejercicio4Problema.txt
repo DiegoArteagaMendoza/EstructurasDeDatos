@@ -1,0 +1,7 @@
+    #Diego Arteaga
+    #Fecha: 15-03-22
+    #Ejercicio 4 
+
+        Una máscara es un patrón binario en una palabra. Las máscaras se utilizan de acuerdo con
+        las siguientes operaciones: and, or y not. Escribir un programa que utilice una máscara para
+        disponer 1’s en posiciones que se deseen, para los bits de una palabra
