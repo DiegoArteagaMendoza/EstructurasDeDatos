@@ -1,5 +1,5 @@
 # EstructurasDiscretas
-Repositorio para subir apuntes, actividades y ejercicios del ramo "Estructuras Discretas" 2022-1
+Repositorio para subir apuntes, actividades y ejercicios del ramo "Estructuras De Datos" 2022-1
 
   # Nombre: 
       Diego Arteaga Mendoza
