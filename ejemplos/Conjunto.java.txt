@@ -1,0 +1,77 @@
+
+
+public class Conjunto {
+    private  byte[] datos;
+    private  int size;
+
+    public Conjunto(){
+        datos=new byte[32];
+        size=0;
+
+    }
+
+    public boolean add(int x){
+        if((x<0)||(x>31)){
+            return false;
+        }
+        if(datos[x]==0){
+            size++;
+        }
+        datos[x]=1;
+        return true;
+    }
+
+    public boolean remove(int x){
+        if((x<0)||(x>31)){
+            return false;
+        }
+        if(datos[x]==1){
+            size--;
+        }
+        datos[x]=0;
+        return true;
+    }
+
+    public Conjunto union(Conjunto B){
+        Conjunto resp=new Conjunto();
+        //resp es la unión de this y B
+        //O(n), más preciso O(this.datos.length)
+        for(int i=0; i<datos.length;i++){
+            int j=datos[i]+ B.datos[i];
+            if(j==0){
+                resp.remove(i);
+            }else{
+                resp.add(i);
+            }
+        }
+        return resp;
+    }
+    public Conjunto interseccion(Conjunto B){
+        Conjunto resp=new Conjunto();
+        //resp es la unión de this y B
+        //O(n), más preciso O(this.datos.length)
+        for(int i=0; i<datos.length;i++){
+            int j=datos[i]*B.datos[i];
+            if(j==0){
+                resp.remove(i);
+            }else{
+                resp.add(i);
+            }
+        }
+        return resp;
+    }
+
+    public boolean pertenece(int x){
+        return datos[x]==1;
+    }
+
+    public int size(){
+        return size;
+    }
+
+    public boolean estaVacio(){
+        return size==0;
+    }
+
+
+}
