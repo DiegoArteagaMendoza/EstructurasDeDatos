@@ -1,0 +1,8 @@
+Una tarjeta de adquisición de datos proporciona a nuestro ordenador las lecturas de tres
+sensores (temperatura, acidez y nivel de un depósito de líquidos) agrupadas en una sola
+variable de tipo entero. Los datos recibidos del sensor de temperatura ocupan los 12 bits
+más significativos de dicha variable (bits 0 al 11); los datos del sensor de acidez los 8 bits
+siguientes (bits 12 al 19), y los del sensor de nivel los 10 bits siguientes (bits 20 al 29). El resto
+de bits de la variable entera se descartan. Realizar un programa capaz de extraer las lecturas
+de los distintos sensores, mostrando cada una de ellas por pantalla (simular los datos
+recibidos en la tarjeta introduciendo por teclado valores de la variable entera)
