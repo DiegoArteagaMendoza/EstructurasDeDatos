@@ -11,9 +11,12 @@ public class Ejercicio1Date {
         System.out.println("Ingrese dia: "); int dia = tec.nextInt();
         System.out.println("Ingrese mes: "); int mes = tec.nextInt();
         System.out.println("Ingrese año: "); int anio = tec.nextInt();
+
+        setDia(dia);
+
     }
 
-    private int data;
+    private static int data;
 
     public void Ejercicio1Date() {
         data = 0;
@@ -37,9 +40,13 @@ public class Ejercicio1Date {
     //año      //mes //dia //vacio
 //000000000000 1111  11111 00000000000 
 
-    public void setDia(int dia) {
+    public static void setDia(int dia) { //deja solo los bits del dia
         if (dia > 0 && dia <= 31) {
-            int mask = 
+            int mask = 63488; //00000000000000001111100000000000
+            data = (data & mask) | (dia << 16);
+            System.out.println("Data: " + Long.toBinaryString(data));
+        } else {
+            System.out.println("Dia no ingresado");
         }
     }
 
