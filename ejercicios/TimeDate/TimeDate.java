@@ -1,10 +1,11 @@
-package ejercicios.Ejercicio1Date;
+package ejercicios.TimeDate;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 
-public class Ejercicio1Date {
-    
+public class TimeDate {
     private static int data;
 
-    public void Ejercicio1Date() {
+    public void Date() {
         data = 0;
     }
 
@@ -31,6 +32,33 @@ public class Ejercicio1Date {
     public int getMinuto() {
         int minuto = (data << 26) >>> 25;
         return minuto;
+    }
+
+    public boolean sameDate(TimeDate t) {
+        LocalDate now = LocalDate.now();
+        if (now.equals(t)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isBefore(TimeDate t) {
+        LocalDate now = LocalDate.now();
+        if (now.isBefore((ChronoLocalDate)t)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isAfter(TimeDate t) {
+        LocalDate now = LocalDate.now();
+        if (now.isAfter((ChronoLocalDate)t)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //año      //mes //dia //hora //minuto

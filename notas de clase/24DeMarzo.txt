@@ -1,0 +1,6 @@
+O(1) = significa orden constante, lo que quiere decir que el algoritmo siempre tarda lo mismo
+O(log n) = significa orden de crecimiento logaritmico
+
+el bubble sort ordena un algoritmo en base a for, donde hay uno anidado dentro de otro
+
+el merge sort didive el arreglo en 2 mitades hasta llegar al tamaño minimo y volver a armarlo
