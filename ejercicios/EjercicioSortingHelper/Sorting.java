@@ -166,6 +166,10 @@ public class Sorting {
             data[0][2] = (data[0][2]+finishTime) / 2;
 
             System.out.println(data[0][0] + "\t" + data[0][1] + "\t" + data[0][2]);
+
+            if (datos[i] > 50000000) {
+                System.out.println("Proceso finalizado");
+            }
         }
 		
 		// int arr1[] = fillArray(1000);
