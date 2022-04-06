@@ -83,7 +83,37 @@ public class Lista {
     }
 
     //getMayores
-    public int[] getMayores() {
+    public Lista getMayores() {
+      Nodo n = header;
+      Lista lista = new Lista();
+      int prom = Promedio();
+      while (n != null) {
+        if (n.elObjeto > prom) {
+          boolean op = InsertaOrdenado(n);
+          if (op) {
+            lista.InsertaFinal(n.elObjeto);;
+          }
+        }
+        n = n.next;
+      }
+      return lista;
+    }
+
+    //DEVOLVER LA LISTA CON LOS DATOS SUPERIORES AL PROMEDIO EN ORDEN CRECIENTE
+    public boolean InsertaOrdenado(Nodo n) {
+      Nodo m = header;
+      if (n.elObjeto > m.elObjeto) {
+        m.next = n.next;
+        n.next = m;
+        return true;
+      } else {
+        n.next = m;
+        return true;
+      }
+    }
+
+    //getMayores con un arreglo unidimencional
+    /*public int[] getMayores() {
       Nodo n = header;
       int[] lista = new int[Size()];
       int prom = Promedio();
@@ -99,19 +129,5 @@ public class Lista {
         n = n.next;
       }
       return lista;
-    }
-
-    //DEVOLVER LA LISTA CON LOS DATOS SUPERIORES AL PROMEDIO EN ORDEN CRECIENTE
-    public boolean InsertaOrdenado(Nodo n) {
-      Nodo m = header;
-
-      if (n.elObjeto > m.elObjeto) {
-        m.next = n.next;
-        n.next = m;
-        return true;
-      } else {
-        n.next = m;
-        return true;
-      }
-    }
+    }*/
 }

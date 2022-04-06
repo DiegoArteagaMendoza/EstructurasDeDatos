@@ -14,45 +14,37 @@ public class TestLista {
 		} while (date != 0);
 
 		/*System.out.println("La lista esta vacia?: " + l.EstaVacia());
-
 		System.out.println("Size: " + l.Size());
 		l.InsertaInicio(1);
-
 		System.out.println("La lista esta vacia?: " + l.EstaVacia());
 		System.out.println("Size: " + l.Size());
-
 		l.InsertaInicio(2);
 		System.out.println("Size: " + l.Size());
-
 		l.InsertaFinal(3);
 		System.out.println("Size: " + l.Size());
-
 		l.InsertaFinal(4);
 		System.out.println("Size: " + l.Size());
-
 		l.InsertaFinal(5);
 		System.out.println("Size: " + l.Size());
-
 		l.InsertaFinal(6);
 		System.out.println("Size: " + l.Size());
-
 		l.InsertaFinal(7);
 		System.out.println("Size: " + l.Size());
-
 		l.InsertaFinal(8);
 		System.out.println("Size: " + l.Size());
-
 		l.InsertaFinal(9);
 		System.out.println("Size: " + l.Size());
-
 		l.InsertaFinal(10);
 		System.out.println("Size: " + l.Size());*/
 
 		//enviar lista al promedio
 		int prom = l.Promedio();
 		System.out.println("\nEL PROMEDIO ES: " + prom + "\n");
+		
+		Lista lista = l.getMayores();
+		lista.Print();
 
-		int[] mayoresOrdenados = l.getMayores();
+		/*int[] mayoresOrdenados = l.getMayores();
 		if (mayoresOrdenados != null) {
 			System.out.println("Lista ordenada");
 			for (int i = 0; i < mayoresOrdenados.length; i++) {
@@ -60,7 +52,8 @@ public class TestLista {
 					System.out.println(mayoresOrdenados[i]);
 				}
 			}
-		}
+		}*/
+
 		/*l.Print();
 		l.Eliminar(12);
 		System.out.println("\nSize: " + l.Size());
