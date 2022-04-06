@@ -14,7 +14,7 @@ public class Lista {
      if (EstaVacia()) header=new Nodo(o, null);
       else{
             Nodo t;
-            for(t = header; t.next != null; t= t.next) ;;
+            for(t = header; t.next != null; t= t.next);
             t.next = new Nodo(o,null);
         }
     }
@@ -43,19 +43,21 @@ public class Lista {
    }
    
    // Verifica si la lista está vacias;
-   public boolean EstaVacia() {
-   return header == null;
-   }
+  public boolean EstaVacia() {
+    return header == null;
+  }
    
-   //-----Imprime la lista-----
-   void Print() {
-      if(header!=null) Imprimir(header);
-       else System.out.println("Lista Vacia");
-       }
+  //-----Imprime la lista-----
+  void Print() {
+    if(header!=null) Imprimir(header);
+    else System.out.println("Lista Vacia");
+  }
    
     void Imprimir(Nodo m ) {
-       if(m !=null) {m.Print(); Imprimir(m.next);}
-     }
+      if(m !=null) {
+        m.Print(); Imprimir(m.next);
+      }
+    }
    
    //-----Clase Nodo--------- 
     private class Nodo { 
@@ -66,4 +68,50 @@ public class Lista {
      void Print(){ System.out.print("- " + elObjeto);}
     }
    
+    //CALCULAR EL PROMEDIO
+    public int Promedio() {
+      int prom = 0, tam = 0;
+      Nodo n = header;
+
+      while (n != null) {
+        prom += n.elObjeto;
+        tam++;
+        n = n.next;
+      }
+
+      return prom / tam;
+    }
+
+    //getMayores
+    public int[] getMayores() {
+      Nodo n = header;
+      int[] lista = new int[Size()];
+      int prom = Promedio();
+      int i = 0;
+      while (n != null) {
+        if (n.elObjeto > prom) {
+          boolean op = InsertaOrdenado(n);
+          if (op) {
+            lista[i] = n.elObjeto;
+            i++;
+          }
+        }
+        n = n.next;
+      }
+      return lista;
+    }
+
+    //DEVOLVER LA LISTA CON LOS DATOS SUPERIORES AL PROMEDIO EN ORDEN CRECIENTE
+    public boolean InsertaOrdenado(Nodo n) {
+      Nodo m = header;
+
+      if (n.elObjeto > m.elObjeto) {
+        m.next = n.next;
+        n.next = m;
+        return true;
+      } else {
+        n.next = m;
+        return true;
+      }
+    }
 }
