@@ -1,0 +1,3 @@
+1. Informe descriptivo por problema, maximo 2 hojas
+    - describe el algoritmo
+    - indica el Orden de magnitud
