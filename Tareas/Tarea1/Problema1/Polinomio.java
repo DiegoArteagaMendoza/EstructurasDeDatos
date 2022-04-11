@@ -82,22 +82,41 @@ public class Polinomio {
         return tnodos;
     }
 
+    public void InsertaInicio(int coeficiente, int exopoente, Nodo next) {
+        if (isEmpty()) header=new Nodo(coeficiente, exopoente, null);
+        else  header = new Nodo(coeficiente, exopoente, header);
+    }
+
     public static void CreaPolinomio() {
         Polinomio p = new Polinomio();
         System.out.println(p.Size());
     }
 
     public static void AgregaUnTermino(/*int coeficiente, int exponente*/) { //agregar addordenado
+        Nodo n = header;
+        Polinomio p = new Polinomio();
         int coeficiente = 0;
         int exponente = 0;
         System.out.print("\n\nIngrese el coeficiente de su polinomio: "); coeficiente = tec.nextInt();
+        //Nodo coeficienteNodo.coeficiente = coeficiente;
         System.out.print("Ingrese el exponente de su polinomio: "); exponente = tec.nextInt();
         if (isEmpty()) {
-            header = new Nodo(coeficiente, exponente, null);
-            System.out.println("Polinomio añadido");
+            boolean op = IngresaOrdenado(n);
+            if (op == true) {
+                p.InsertaInicio(coeficiente,exponente,null);
+                //header = new Nodo(coeficiente, exponente, null);
+                System.out.println("Polinomio añadido");
+            }
+
         } else {
-            header = new Nodo(coeficiente, exponente, header);
-            System.out.println("Polinomio añadido");
+            boolean op = IngresaOrdenado(n);
+            if (op == true) {
+                p.InsertaInicio(coeficiente,exponente,header);
+                //header = new Nodo(coeficiente, exponente, null);
+                System.out.println("Polinomio añadido");
+            }
+            //header = new Nodo(coeficiente, exponente, header);
+            //System.out.println("Polinomio añadido");
         }
     }
 
@@ -179,8 +198,20 @@ public class Polinomio {
         System.out.println("El grado es: " + tam);
     }
 
+    public static boolean IngresaOrdenado(Nodo n) {
+        Nodo m = header;
+        if (n.coeficiente > m.coeficiente) {
+          m.next = n.next;
+          n.next = m;
+          return true;
+        } else {
+          n.next = m;
+          return true;
+        }
+      }
+
     //falta hacer
-        //ingresa ordenado de mayor a menor
+        //ingresa ordenado de mayor a menor (ARREGLAR ERROR)
         //grado
         //volver un bucle preguntando cuantos datos por polinomio
 }
