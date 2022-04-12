@@ -4,3 +4,5 @@ O(log n) = significa orden de crecimiento logaritmico
 el bubble sort ordena un algoritmo en base a for, donde hay uno anidado dentro de otro
 
 el merge sort didive el arreglo en 2 mitades hasta llegar al tamaño minimo y volver a armarlo
+
+el java sort ordena un arreglo mediante la comparación de matrices
