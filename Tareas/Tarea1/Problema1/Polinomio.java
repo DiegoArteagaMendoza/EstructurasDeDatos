@@ -1,11 +1,9 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 public class Polinomio {
 
     //  Main
     static Scanner tec = new Scanner(System.in);
     public static void main(String[] args) {
-        Polinomio p = new Polinomio();
         int op = 10;
         do {
             System.out.println("Problema 1 menu\n1. Crear un polinomio vacío");
@@ -16,9 +14,7 @@ public class Polinomio {
 
             switch (op) {
                 case 1: CreaPolinomio(); break;
-                case 2: AgregaUnTermino();
-                        System.out.println(p.Size());
-                        break;
+                case 2: AgregaUnTermino(); break;
                 case 3: convert(); break;
                 case 4: suma(); break;
                 case 5: multiplicar(); break;
@@ -31,7 +27,7 @@ public class Polinomio {
     }
 
     //  Clases
-    public static Nodo header;
+    public static Polinomio.Nodo header;
     static Polinomio p = new Polinomio();
 
     public static class Nodo { 
@@ -40,7 +36,7 @@ public class Polinomio {
         public Nodo next;
         public Nodo(int coeficiente, int exponente, Nodo next)
         {this.coeficiente=coeficiente; this.exponente = exponente; this.next = next;} 
-        void Print(){ System.out.print(coeficiente + "x^" + exponente + " -- ");}
+        void Print(){ System.out.print(coeficiente + "x^" + exponente + " \n");}
     }
 
     Polinomio() {
@@ -57,9 +53,9 @@ public class Polinomio {
         return tnodos;
     }
 
-    public void InsertaInicio(int coeficiente, int exopoente, Nodo next) {
-        if (isEmpty()) header=new Nodo(coeficiente, exopoente, null);
-        else  header = new Nodo(coeficiente, exopoente, header);
+    public void InsertaInicio(int coeficiente, int exoponente, Nodo next) {
+        if (isEmpty()) header=new Nodo(coeficiente, exoponente,null);
+        else header = new Nodo(coeficiente, exoponente, header);
     }
 
     static int cantPolinomios = 0;
@@ -71,33 +67,19 @@ public class Polinomio {
         System.out.println(cantPolinomios);
     }
 
-    public static void AgregaUnTermino() { //agregar addordenado
-        //Polinomio p = new Polinomio();
-        int coeficiente = 0, exponente = 0;
-
+    public static void AgregaUnTermino() {
         System.out.print("\nCuantos coeficientes tendra su polinomio: "); int resp = tec.nextInt();
-        int poli[] = new int[resp];
-
-        System.out.println("\n\nIMPORTANTE: se preguntaran primero los coeficientes y luego los exponenetes\n\n");
+        int coeficientes[] = new int[resp];
+        int exponentes[] = new int[resp];
 
         for (int i = 0; i < resp; i++) {
-            System.out.print("Ingrese el coeficiente de su polinomio " + i + ": "); coeficiente = tec.nextInt();
-            poli[i] = coeficiente;
+            System.out.print("Ingrese el coeficiente del polinomio " + (i+1) + ": "); coeficientes[i] = tec.nextInt();
         }
+        coeficientes =  IngresaOrdenado(coeficientes);
 
-        int lista[] = IngresaOrdenado(poli);
-
-        for (int i = 0; i < lista.length; i++ ){
-            if (isEmpty()) {
-                System.out.print("\nIngrese el exponente del polinomio de coeficiente " + lista[0] + ": "); exponente = tec.nextInt();
-                p.InsertaInicio(lista[0],exponente,null);
-                System.out.println("Polinomio añadido "+ lista[0] + "x^" + exponente);
-    
-            } else {
-                System.out.print("\nIngrese el exponente del polinomio de coeficiente " + lista[i] + ": "); exponente = tec.nextInt();
-                p.InsertaInicio(lista[i],exponente,header);
-                System.out.println("Polinomio añadido " + lista[i] + "x^" + exponente);
-            }
+        for (int i = 0; i < resp; i++) {
+            System.out.print("Ingrese el exponente del coeficiente " + coeficientes[i] + "x^: "); exponentes[i] = tec.nextInt();
+            p.InsertaInicio(coeficientes[i], exponentes[i], header);
         }
     }
 
@@ -123,11 +105,65 @@ public class Polinomio {
     }
 
     public static void suma() {
-        
+        Nodo n = header;
+        Nodo m = header.next;
+        int resultados[][] = new int[p.Size()][2];
+        while (m != null) {
+            int i = 0;
+            if (n.exponente == m.exponente) {
+                int coeficiente = n.coeficiente + m.coeficiente;
+                int exoponente = n.exponente;
+                resultados[i][0] = coeficiente;
+                resultados[i][1] = exoponente;
+                i++;
+            } else {
+                if (n.coeficiente > m.coeficiente) {
+                    resultados[i][0] = n.coeficiente;
+                    resultados[i][1] = n.exponente;
+                    i++;
+                } else {
+                    resultados[i][0] = m.coeficiente;
+                    resultados[i][1] = m.exponente;
+                    i++;
+                }
+            }
+            n = n.next;
+            m = m.next;
+        }
+        for (int j = 0; j < resultados.length; j++) {
+            System.out.print(resultados[j][0] + "x^" + resultados[j][1] + " + ");
+        }
     }
 
     public static void multiplicar() {
-        
+        Nodo n = header;
+        Nodo m = header.next;
+        int resultados[][] = new int[p.Size()][2];
+        while (m != null) {
+            int i = 0;
+            if (n.exponente == m.exponente) {
+                int coeficiente = n.coeficiente * m.coeficiente;
+                int exoponente = n.exponente * m.exponente;
+                resultados[i][0] = coeficiente;
+                resultados[i][1] = exoponente;
+                i++;
+            } else {
+                if (n.coeficiente > m.coeficiente) {
+                    resultados[i][0] = n.coeficiente;
+                    resultados[i][1] = n.exponente;
+                    i++;
+                } else {
+                    resultados[i][0] = m.coeficiente;
+                    resultados[i][1] = m.exponente;
+                    i++;
+                }
+            }
+            n = n.next;
+            m = m.next;
+        }
+        for (int j = 0; j < resultados.length; j++) {
+            System.out.print(resultados[j][0] + "x^" + resultados[j][1] + " + ");
+        }
     }
 
     public static void evaluar() {
@@ -165,35 +201,5 @@ public class Polinomio {
     //falta hacer
         //preguntar cuanto polinomios se ingresaran (polinomio != coeficiente) (en caso de que sean 2 o mas sumarlos)
         //suma y multiplicación
-
-    // String[][] polinomio = new String[1][2];
-    //     System.out.print("\n\nIngrese el coeficiente de su polinomio 1: "); a = tec.nextInt();
-    //     System.out.print("Ingrese el exponente de su polinomio 1: "); b = tec.nextInt();
-    //     System.out.println("\n");
-    //     System.out.print("Ingrese el coeficiente de su polinomio 2: "); c = tec.nextInt();
-    //     System.out.print("Ingrese el exponente de su polinomio 2: "); d = tec.nextInt();
-    //     int coeficiente = a+c;
-    //     int exopoente = 0;
-    //     if (b == d) {
-    //         exopoente = b;
-    //     } else {
-    //         exopoente = b*d;
-    //     }
-    //     polinomio[0][0] = String.valueOf(coeficiente);
-    //     polinomio[0][1] = String.valueOf(exopoente);
-    //     System.out.println("La suma de " + a +"x^"+ b + " y " + c +"x^"+ d + " es igual a: " + polinomio[0][0] + "x^" + polinomio[0][1]);
-
-
-
-    // System.out.print("\n\nIngrese el coeficiente de su polinomio 1: "); a = tec.nextInt();
-    //     System.out.print("Ingrese el exponente de su polinomio 1: "); b = tec.nextInt();
-    //     System.out.println("\n");
-    //     System.out.print("Ingrese el coeficiente de su polinomio 2: "); c = tec.nextInt();
-    //     System.out.print("Ingrese el exponente de su polinomio 2: "); d = tec.nextInt();
-    //     String[][] polinomio = new String[1][2];
-    //     int coeficiente = a*c;
-    //     int exopoente = b*d;;
-    //     polinomio[0][0] = String.valueOf(coeficiente);
-    //     polinomio[0][1] = String.valueOf(exopoente);
-    //     System.out.println("La multiplicación de " + a +"x^"+ b + " y " + c +"x^"+ d + " es igual a: " + polinomio[0][0] + "x^" + polinomio[0][1]);
+        //duplicados
 }
