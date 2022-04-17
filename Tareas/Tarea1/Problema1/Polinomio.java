@@ -54,33 +54,92 @@ public class Polinomio {
     }
 
     public void InsertaInicio(int coeficiente, int exoponente, Nodo next) {
-        if (isEmpty()) header=new Nodo(coeficiente, exoponente,null);
-        else header = new Nodo(coeficiente, exoponente, header);
+        if (isEmpty()){
+            header=new Nodo(coeficiente, exoponente,null);
+        } else {
+            boolean op = buscaIguales(coeficiente, exoponente);
+            if (op == true) {
+                header = new Nodo(coeficiente, exoponente, header);
+            } else {
+                System.out.println("Polinomio ingresado antes...");
+            }
+        }
+    }
+
+    private boolean buscaIguales(int coeficiente, int exoponente) { //funcion que busca si hay algun polinomio igual 
+        Nodo n = header;
+        while (n != null) {
+            if (n.coeficiente == coeficiente) {
+                if (n.exponente == exoponente) {
+                    n = n.next;
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
 
     static int cantPolinomios = 0;
 
-    public static void CreaPolinomio() {
+    public static void CreaPolinomio() { //Orden (1)
         Polinomio p = new Polinomio();
         System.out.println("\nPolinomio creado de tamaño: " + p.Size());
         cantPolinomios++;
         System.out.println(cantPolinomios);
     }
 
-    public static void AgregaUnTermino() {
-        System.out.print("\nCuantos coeficientes tendra su polinomio: "); int resp = tec.nextInt();
-        int coeficientes[] = new int[resp];
-        int exponentes[] = new int[resp];
+    public static void AgregaUnTermino() { //Orden (n2)
+        System.out.println("\nCuantos polinomios ingresara: "); int op = tec.nextInt();
+        if (op > 1) {
+            System.out.println("\nSe agregaran polinomios de formato monomio...");
+            int coeficientes[] = new int[op];
+            int exponentes[] = new int[op];
 
-        for (int i = 0; i < resp; i++) {
-            System.out.print("Ingrese el coeficiente del polinomio " + (i+1) + ": "); coeficientes[i] = tec.nextInt();
-        }
-        coeficientes =  IngresaOrdenado(coeficientes);
+            for (int i = 0; i < op; i++) {
+                System.out.print("Ingrese el coeficiente del polinomio " + (i+1) + ": "); coeficientes[i] = tec.nextInt();
+            }
+            coeficientes =  IngresaOrdenado(coeficientes);
 
-        for (int i = 0; i < resp; i++) {
-            System.out.print("Ingrese el exponente del coeficiente " + coeficientes[i] + "x^: "); exponentes[i] = tec.nextInt();
-            p.InsertaInicio(coeficientes[i], exponentes[i], header);
+            for (int i = 0; i < op; i++) {
+                System.out.print("Ingrese el exponente del coeficiente " + coeficientes[i] + "x^: "); exponentes[i] = tec.nextInt();
+            }
+            int agrega[][] = suma2(coeficientes, exponentes); //agrega en pos 1 = coeficiente suma y pos 2 = exponenete mayor
+
+            p.InsertaInicio(agrega[0][0], agrega[0][1], header);
+
+        } else {
+            System.out.print("\nCuantos coeficientes tendra su polinomio: "); int resp = tec.nextInt();
+            int coeficientes[] = new int[resp];
+            int exponentes[] = new int[resp];
+
+            for (int i = 0; i < resp; i++) {
+                System.out.print("Ingrese el coeficiente del polinomio " + (i+1) + ": "); coeficientes[i] = tec.nextInt();
+            }
+            coeficientes =  IngresaOrdenado(coeficientes);
+
+            for (int i = 0; i < resp; i++) {
+                System.out.print("Ingrese el exponente del coeficiente " + coeficientes[i] + "x^: "); exponentes[i] = tec.nextInt();
+                p.InsertaInicio(coeficientes[i], exponentes[i], header);
+            }
         }
+    }
+
+    public static int[][] suma2(int coeficientes[], int exponentes[]) { //aplica para cuando se ingresan mas de 1 polinomio a la ves, en las cuales hay que sumarlos para ingersar el final
+        int retorno[][] = new int [1][2];
+        int coeficiente = 0;
+        int exoponente = 0;
+        for (int i = 0; i < coeficientes.length; i++) {
+            coeficiente = coeficiente + coeficientes[i];
+        }
+        int exponentesOrd[] = IngresaOrdenado(exponentes);
+        exoponente = exponentesOrd[exponentesOrd.length-1];
+
+        retorno[0][0] = coeficiente;
+        retorno[0][1] = exoponente;
+        return retorno;
     }
 
     void Print() {
@@ -94,7 +153,7 @@ public class Polinomio {
         }
     }
 
-    public static void convert() {
+    public static void convert() { //Orden (n)
         if (isEmpty()) {
             System.out.println("No hay polinomios ingresados");
         } else {
@@ -104,69 +163,28 @@ public class Polinomio {
         }
     }
 
-    public static void suma() {
+    public static void suma() { //Orden (n)
         Nodo n = header;
-        Nodo m = header.next;
-        int resultados[][] = new int[p.Size()][2];
-        while (m != null) {
-            int i = 0;
-            if (n.exponente == m.exponente) {
-                int coeficiente = n.coeficiente + m.coeficiente;
-                int exoponente = n.exponente;
-                resultados[i][0] = coeficiente;
-                resultados[i][1] = exoponente;
-                i++;
-            } else {
-                if (n.coeficiente > m.coeficiente) {
-                    resultados[i][0] = n.coeficiente;
-                    resultados[i][1] = n.exponente;
-                    i++;
-                } else {
-                    resultados[i][0] = m.coeficiente;
-                    resultados[i][1] = m.exponente;
-                    i++;
-                }
-            }
+        int resultados[][] = new int[1][2];
+        int exponentes[] = new int[p.Size()];
+        int i = 0;
+        while (n != null) {
+            resultados[0][0] = resultados[0][0] + n.coeficiente;
+            exponentes[i] = n.exponente;
+            i++;
             n = n.next;
-            m = m.next;
         }
-        for (int j = 0; j < resultados.length; j++) {
-            System.out.print(resultados[j][0] + "x^" + resultados[j][1] + " + ");
-        }
+        int exponentesOrd[] = IngresaOrdenado(exponentes);
+        resultados[0][1] = exponentesOrd[exponentesOrd.length-1];
+
+        System.out.println(resultados[0][0] + "x^" + resultados[0][1]);
     }
 
-    public static void multiplicar() {
-        Nodo n = header;
-        Nodo m = header.next;
-        int resultados[][] = new int[p.Size()][2];
-        while (m != null) {
-            int i = 0;
-            if (n.exponente == m.exponente) {
-                int coeficiente = n.coeficiente * m.coeficiente;
-                int exoponente = n.exponente * m.exponente;
-                resultados[i][0] = coeficiente;
-                resultados[i][1] = exoponente;
-                i++;
-            } else {
-                if (n.coeficiente > m.coeficiente) {
-                    resultados[i][0] = n.coeficiente;
-                    resultados[i][1] = n.exponente;
-                    i++;
-                } else {
-                    resultados[i][0] = m.coeficiente;
-                    resultados[i][1] = m.exponente;
-                    i++;
-                }
-            }
-            n = n.next;
-            m = m.next;
-        }
-        for (int j = 0; j < resultados.length; j++) {
-            System.out.print(resultados[j][0] + "x^" + resultados[j][1] + " + ");
-        }
+    public static void multiplicar() { //hacer
+        
     }
 
-    public static void evaluar() {
+    public static void evaluar() { //Orden(n)
         Nodo n = header;
         int a = 0,b = 0,x = 0;
         int result = 0;
@@ -176,30 +194,25 @@ public class Polinomio {
         while (n != null) {
             a = n.coeficiente;
             b = n.exponente;
-            int pot = (int) Math.pow(b, x);
+            int pot = (int) Math.pow(x, b);
             result = a*(pot);
             System.out.println("El resultado de evaluar el polinomio " + a+"*("+x+"^"+b + ") es: " + result);
             n = n.next;
         }
     }
 
-    public static void grado() { //recorre todos los polinomios agregados y retorna la cantidad que hay
-        int tam = 0;
+    public static void grado() { //recorre todos los polinomios agregados y retorna la suma de los exponentes Orden(n)
+        int grade = 0;
         Nodo n = header;
         while (n != null) {
-            tam++;
+            grade += n.exponente;
             n = n.next;
         }
-        System.out.println("El grado es: " + tam);
+        System.out.println("El grado es: " + grade);
     }
 
-    public static int[] IngresaOrdenado(int[] datos) { //4,2,3
+    public static int[] IngresaOrdenado(int[] datos) { //funcion que ordena de mayor a menor
         Arrays.sort(datos);
         return datos;
     }
-
-    //falta hacer
-        //preguntar cuanto polinomios se ingresaran (polinomio != coeficiente) (en caso de que sean 2 o mas sumarlos)
-        //suma y multiplicación
-        //duplicados
 }
