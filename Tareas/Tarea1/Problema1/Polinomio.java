@@ -9,7 +9,7 @@ public class Polinomio {
             System.out.println("Problema 1 menu\n1. Crear un polinomio vacío");
             System.out.println("2. Agregar un término al polinomio\n3. Convertir un objeto de polinomio a string");
             System.out.println("4. Sumar dos polinomios\n5. Multiplicar dos polinoios");
-            System.out.println("6. Dado un valor, evaluar el polinomio\n7. Indicar el grado del polinomio");
+            System.out.println("6. Dado un valor, evaluar el polinomio\n7. Indicar el grado del polinomio\n0. Salir");
             System.out.print("Opción: "); op = tec.nextInt();
 
             switch (op) {
@@ -27,7 +27,7 @@ public class Polinomio {
     }
 
     //  Clases
-    public static Polinomio.Nodo header;
+    public static Nodo header;
     static Polinomio p = new Polinomio();
 
     public static class Nodo { 
@@ -92,7 +92,7 @@ public class Polinomio {
     }
 
     public static void AgregaUnTermino() { //Orden (n2)
-        System.out.println("\nCuantos polinomios ingresara: "); int op = tec.nextInt();
+        System.out.print("\nCuantos polinomios ingresara: "); int op = tec.nextInt();
         if (op > 1) {
             System.out.println("\nSe agregaran polinomios de formato monomio...");
             int coeficientes[] = new int[op];
@@ -153,7 +153,7 @@ public class Polinomio {
         }
     }
 
-    public static void convert() { //Orden (n)
+    public static void convert() { //Orden (n), convierte de int a srting
         if (isEmpty()) {
             System.out.println("No hay polinomios ingresados");
         } else {
@@ -180,8 +180,16 @@ public class Polinomio {
         System.out.println(resultados[0][0] + "x^" + resultados[0][1]);
     }
 
-    public static void multiplicar() { //hacer
-        
+    public static void multiplicar() { //Orden(n)
+        Nodo n = header;
+        int coef = 1;
+        int exp = 0;
+        while (n != null) {
+            coef = coef * n.coeficiente;
+            exp += n.exponente;
+            n = n.next;
+        }
+        System.out.println(coef + "x^" + exp);
     }
 
     public static void evaluar() { //Orden(n)
@@ -202,13 +210,17 @@ public class Polinomio {
     }
 
     public static void grado() { //recorre todos los polinomios agregados y retorna la suma de los exponentes Orden(n)
-        int grade = 0;
+        int i = 0;;
+        int exp[] = new int[p.Size()];
         Nodo n = header;
         while (n != null) {
-            grade += n.exponente;
+            //grade += n.exponente;
+            exp[i] = n.exponente;
+            i++;
             n = n.next;
         }
-        System.out.println("El grado es: " + grade);
+        exp = IngresaOrdenado(exp);
+        System.out.println("El grado mayor es: " + exp[exp.length-1]);
     }
 
     public static int[] IngresaOrdenado(int[] datos) { //funcion que ordena de mayor a menor

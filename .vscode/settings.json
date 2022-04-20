@@ -1,5 +1,6 @@
 {
     "java.project.sourcePaths": [
-        "Tareas/Tarea1/Problema1"
+        "Tareas/Tarea1/Problema1",
+        "ejercicios/ProblemasAG"
     ]
 }
