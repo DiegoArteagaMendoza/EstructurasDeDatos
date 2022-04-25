@@ -1,3 +1,5 @@
+//Diego Arteaga
+//Sebastian Jouannet
 import java.util.LinkedList;
 
 public class ArbolBinario {
@@ -72,20 +74,19 @@ public class ArbolBinario {
     LinkedList<ArbolBinario> NodosRango = new LinkedList<>();
 
     public LinkedList<ArbolBinario> rango(int i, int j) {
+        if (this == null) {
+            return new LinkedList<>();
+        }
         if(this.dato >= i && this.dato <= j) {
             NodosRango.addLast(this);
         }
-        if (iz != null) {
-            if (iz.dato >= i && iz.dato <= j) {
-                iz.NodosRango = this.NodosRango;
-                iz.rango(i, j);
-            }
+        if (this.iz != null) {
+            iz.NodosRango = this.NodosRango;
+            iz.rango(i, j);
         }
-        if (der != null) {
-            if (der.dato >= i && der.dato <= j) {
-                der.NodosRango = this.NodosRango;
-                der.rango(i, j);
-            }
+        if (this.der != null) {
+            der.NodosRango = this.NodosRango;
+            der.rango(i, j);
         }
         return NodosRango;
     }

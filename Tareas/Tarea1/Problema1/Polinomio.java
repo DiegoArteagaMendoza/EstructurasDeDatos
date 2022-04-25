@@ -1,3 +1,6 @@
+//Diego Arteaga
+//Rodrigo Jara
+//Sebastian Jouannet
 import java.util.*;
 public class Polinomio {
 

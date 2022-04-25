@@ -1,3 +1,5 @@
+//Diego Arteaga
+//Sebastian Jouannet
 import javax.print.attribute.standard.NumberOfDocuments;
 
 import java.util.LinkedList;
@@ -38,8 +40,8 @@ public class Main {
 
         LinkedList<ArbolBinario> nodosRango1 = raiz.rango(Rangoi,Rangoj);
         System.out.println("Nodos pretenecientes a la raiz del rango 1");
-        for (ArbolBinario r : nodosRango1) {
-            System.out.println(r.dato);
+        for (ArbolBinario c : nodosRango1) {
+            System.out.println(c.dato);
         }
         LinkedList<ArbolBinario> nodosRango2 = raiz2.rango(Rangoi,Rangoj);
         System.out.println("Nodos pretenecientes a la raiz del rango 2");
