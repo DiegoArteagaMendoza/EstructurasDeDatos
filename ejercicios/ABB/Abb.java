@@ -71,15 +71,16 @@ public class Abb {
 	}
 
 	private boolean comple(NodoAbb n) {
-		for() {
+		NodoAbb x = laRaiz;
+		// for(NodoAbb a: ) {
+		// 	boolean chek = busqueda(laRaiz, -n.elemento);
+		// 	if (chek == true) return true;
+		// }
+		while (laRaiz != null) {
 			boolean chek = busqueda(laRaiz, -n.elemento);
 			if (chek == true) return true;
+			//if (chek == false) return false;
 		}
-		//while (laRaiz != null) {
-		//	boolean chek = busqueda(laRaiz, -n.elemento);
-		//	if (chek == true) return true;
-		//	if (chek == false) return false;
-		//}
 		return false;
 	}
 	
