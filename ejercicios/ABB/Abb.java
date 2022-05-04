@@ -140,11 +140,5 @@ public class Abb {
 			ImprimeAbb(n.lchild, tab + "  ");
 			ImprimeAbb(n.rchild, tab + "  ");
 		}
-	}
-
-	
-
-	
-
-	
+	}	
 }

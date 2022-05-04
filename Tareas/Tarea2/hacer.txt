@@ -1,0 +1,22 @@
+¿Que es un --kd-tree?
+es un arbol binario de busqueda, respresnetado 
+de forma recursiva.
+
+Operaciones fundamentales:
+    -inserción
+    -búsqueda
+
+el primer punto insertado es conciderado la raiz, ademas se
+divide el espacio en dos subespacios dados por la distancia en
+el eje X, al insertar un 2do punto concideramos desde la raiz,
+si la coordenada x del nuevo punto es menor a la x de la raiz,
+esta esta en el primer espacio (izquierda), de lo contrario
+se encuentrea en el segundo espacio (derecha), en este momento
+el nuevo punto pasa a ser hijo de la raiz y subdivide su espacio
+en dos subespacios nuevos.
+
+HACER:
+
+1. APLICACIÓN DE UN KD-TREE
+2. PROBLEMA 1
+3. PROBLEMA 2
