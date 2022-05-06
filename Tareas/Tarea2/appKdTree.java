@@ -44,6 +44,8 @@ public class appKdTree {
         raiz = buscPunto(raiz, x, y);
         if (raiz != null) {
             System.out.println("El punto " + x + "," + y +  " fue encontrado");
+        } else {
+            System.out.println("No se pillo");
         }
     }
 
@@ -67,9 +69,9 @@ public class appKdTree {
 
     private void ImprimirKd(Punto n, String tab) {
 		if (n != null) {
-			System.out.println(tab + n.x + "," + n.y);
-			ImprimirKd(n.left, tab + "  <-");
-			ImprimirKd(n.right, tab + "  ->");
+            ImprimirKd(n.left, tab + "  \t");
+			System.out.println(tab + n.x + "," + n.y + "\n");
+			ImprimirKd(n.right, tab + "  \t");
 		}
 	}
 }
