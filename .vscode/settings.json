@@ -1,7 +1,7 @@
 {
     "java.project.sourcePaths": [
         "Tareas/Tarea1/Problema1",
-        "LabsEvaluados/lab1",
-        "LabsEvaluados/Lab1Rango"
+        "LabsEvaluados/Lab1Rango",
+        "Ejercicios/TimeDate"
     ]
 }
