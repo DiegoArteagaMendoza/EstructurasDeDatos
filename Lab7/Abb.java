@@ -60,27 +60,37 @@ public class Abb {
             inorder(node.rchild);
         }
     }
+
+	private void preOrder(NodoAbb nodo){
+
+		if(nodo != null){
+			nodoList.add(nodo);
+		}
+
+		if(nodo.lchild != null){
+			preOrder(nodo.lchild);
+		}
+		if(nodo.rchild != null){
+			preOrder(nodo.rchild);
+		}
+	}
 	
 	 /* Verifica si existen dos enteros a, b en el ABB tal que a+b =0. 
 	  */
 	public boolean Complemento() {
-		if (comple(laRaiz) == true) return true;
-		if (comple(laRaiz) == false) return false;
+		nodoList.clear();
+		preOrder(laRaiz);
+
+		for (NodoAbb n: nodoList) {
+			if (busqueda(laRaiz, n.elemento*-1)) {
+				return true;
+			}
+		}
 		return false;
-		//return comple(laRaiz);
 	}
 
 	private boolean comple(NodoAbb n) {
-		NodoAbb x = laRaiz;
-		// for(NodoAbb a: ) {
-		// 	boolean chek = busqueda(laRaiz, -n.elemento);
-		// 	if (chek == true) return true;
-		// }
-		while (laRaiz != null) {
-			boolean chek = busqueda(laRaiz, -n.elemento);
-			if (chek == true) return true;
-			//if (chek == false) return false;
-		}
+		
 		return false;
 	}
 	
@@ -142,3 +152,21 @@ public class Abb {
 		}
 	}	
 }
+
+
+		//if (comple(laRaiz) == true) return true;
+		//if (comple(laRaiz) == false) return false;
+		//return false;
+		//return comple(laRaiz);
+
+
+		// NodoAbb x = laRaiz;
+		// // for(NodoAbb a: ) {
+		// // 	boolean chek = busqueda(laRaiz, -n.elemento);
+		// // 	if (chek == true) return true;
+		// // }
+		// while (laRaiz != null) {
+		// 	boolean chek = busqueda(laRaiz, -n.elemento);
+		// 	if (chek == true) return true;
+		// 	//if (chek == false) return false;
+		// }
