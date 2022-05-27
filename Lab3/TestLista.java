@@ -13,6 +13,15 @@ public class TestLista {
 			}
 		} while (date != 0);
 
+		//enviar lista al promedio
+		int prom = l.Promedio();
+		System.out.println("\nEL PROMEDIO ES: " + prom + "\n");
+				
+		Lista lista = l.getMayores();
+		lista.Print();
+
+	}
+}
 		/*System.out.println("La lista esta vacia?: " + l.EstaVacia());
 		System.out.println("Size: " + l.Size());
 		l.InsertaInicio(1);
@@ -37,13 +46,6 @@ public class TestLista {
 		l.InsertaFinal(10);
 		System.out.println("Size: " + l.Size());*/
 
-		//enviar lista al promedio
-		int prom = l.Promedio();
-		System.out.println("\nEL PROMEDIO ES: " + prom + "\n");
-		
-		Lista lista = l.getMayores();
-		lista.Print();
-
 		/*int[] mayoresOrdenados = l.getMayores();
 		if (mayoresOrdenados != null) {
 			System.out.println("Lista ordenada");
@@ -64,5 +66,3 @@ public class TestLista {
 		l.Eliminar(51);
 		System.out.println("\nSize: " + l.Size());
 		System.out.println("�Vac�a?: " + l.EstaVacia());*/
-	}
-}

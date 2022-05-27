@@ -36,17 +36,11 @@ public class Abb {
 	public boolean busqueda(NodoAbb laRaiz, int x) {
 		if (laRaiz==null) return false;
 		if (laRaiz.elemento == x) return true;
-		
-		//if(laRaiz != null) {
         if (x < laRaiz.elemento) {
 			busqueda(laRaiz.lchild, x);
 		} else {
 			busqueda(laRaiz.rchild, x);
-				// if (x > laRaiz.elemento) {
-				// 	busqueda(laRaiz.rchild, x);
-				// }
 		}
-        //}
 		return false;
 	}
 
@@ -64,7 +58,7 @@ public class Abb {
 	private void preOrder(NodoAbb nodo){
 
 		if(nodo != null){
-			nodoList.add(nodo);
+			nodoList.add(nodo.elemento);
 		}
 
 		if(nodo.lchild != null){
@@ -78,19 +72,19 @@ public class Abb {
 	 /* Verifica si existen dos enteros a, b en el ABB tal que a+b =0. 
 	  */
 	public boolean Complemento() {
-		nodoList.clear();
-		preOrder(laRaiz);
-
-		for (NodoAbb n: nodoList) {
-			if (busqueda(laRaiz, n.elemento*-1)) {
-				return true;
-			}
+		if (nodoList.size() != 0) {
+			nodoList.clear();
 		}
-		return false;
+		return comple(laRaiz);
 	}
 
 	private boolean comple(NodoAbb n) {
-		
+		preOrder(n);
+		for (int i = 0; i < nodoList.size(); i++) {
+			if (nodoList.contains(-nodoList.get(i))) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
