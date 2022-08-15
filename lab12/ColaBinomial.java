@@ -65,6 +65,14 @@ class ColaBinomial {
 		return H.head;
 	}
 
+	public int Max() {
+		return max();
+	}
+
+	private int max() {
+		
+	}
+
 	//===========================================================
 	// Mezcla de dos colas Binomiales. A partir de dos colas 
 	// se obtine una tercera que contiene los árboles binomiales

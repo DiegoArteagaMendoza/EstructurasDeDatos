@@ -89,4 +89,25 @@ public class Parsing {
 		}
 		return pilaA.peek();
 	}
+
+	public static int calculo (ArbolExpresion i) {
+		if (i == null) {
+			return 0;
+		}
+		int val = calculo(i.right);
+		int result = 0;
+		if (isANumber(i.symbol)) {
+			result = Character.getNumericValue(i.symbol);
+		} else {
+			if (prioridad(i.symbol) == 1 || prioridad(i.symbol) == 2) {
+				switch (i.symbol) {
+					case 'x': result = val * calculo(i.left);break;
+					case '/': result = val / calculo(i.left);break;
+					case '+': result = val + calculo(i.left);break;
+					case '-': result = val - calculo(i.left);break;
+				}
+			}
+		}
+		return result;
+	}
 }

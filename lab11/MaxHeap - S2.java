@@ -62,6 +62,13 @@ public class MaxHeap {
 	}
 	
 	private void heapifyUp(int i) {
+
+		if (i > 0 && Abb.get(parent(i)) < Abb.get(i)) {
+			swap(i, parent(i));
+
+			heapifyUp(parent(i));
+		}
+
 		// Adjust element i to the correspond pos
 		// Implementar esta función
 	}

@@ -19,6 +19,8 @@ public class TestParsing {
 		ArbolExpresion a = Parsing.getArbol(salida);
 		System.out.println("\n\nSU ARBOL DE EXPRESION: \n");
 		a.print(0);
+
+		System.out.println("El resultado es: "  + Parsing.calculo(a));
 	}
 
 }
