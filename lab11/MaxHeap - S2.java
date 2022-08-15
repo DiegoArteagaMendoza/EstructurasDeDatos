@@ -62,20 +62,46 @@ public class MaxHeap {
 	}
 	
 	private void heapifyUp(int i) {
-
-		if (i > 0 && Abb.get(parent(i)) < Abb.get(i)) {
-			swap(i, parent(i));
-
-			heapifyUp(parent(i));
+		int parent = parent(i);
+		if (items[i] > items[parent]) {
+			swap(i, parent);
+			heapifyUp(parent);
 		}
-
 		// Adjust element i to the correspond pos
 		// Implementar esta función
 	}
 	
 	private void heapify(int i) {
+		if (esHoja(i) == true) {
+			return;
+		}
+		int left = leftChild(i), right = rightChild(i);
+		if (items[i] < items[left] || items[i] < items[right]) {
+			int largest = 0;
+			if(left<= size && items[left] > items[i]){
+				largest = left;
+			}else{
+				largest = i;
+			}
+			if(right<= size && items[right] > items[largest]){
+				largest = right;
+			}
+			if(largest != i){
+				swap(i, largest);
+			}
+			heapify(largest);
+
+		}
 		// Adjust element i to the correspond pos
 		// Sección implementada por sección del miércoles.
+	}
+
+	//funcion privada para saber si esta o no dentro de los datos como hoja
+	private boolean esHoja(int p) {
+		if (p > (size/2) && p <= size) {
+			return true;
+		}
+		return false;
 	}
 	
 	private void buildHeap() {
