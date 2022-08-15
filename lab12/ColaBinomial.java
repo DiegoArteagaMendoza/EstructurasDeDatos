@@ -66,11 +66,29 @@ class ColaBinomial {
 	}
 
 	public int Max() {
-		return max();
+		return max(head);
 	}
 
-	private int max() {
-		
+	private int max(NodoCB r) {
+		int max = r.key;
+		NodoCB a = r;
+		while (a != null) {
+			if (max < a.key) {
+				max = a.key;
+			}
+			if (a.child != null) {
+				NodoCB b = a.child;
+				while (b != null) {
+					int max2 = max(b);
+					if (max < max2) {
+						max = max2;
+					}
+					b = b.sibling;
+				}
+			}
+			a = a.sibling;
+		}
+		return max;
 	}
 
 	//===========================================================

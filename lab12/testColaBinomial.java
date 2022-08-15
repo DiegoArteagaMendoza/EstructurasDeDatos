@@ -5,5 +5,7 @@ class testColaBinomial{
 		ColaBinomial b = new ColaBinomial();
 		for (int i=0; i < a.length;  i++) b.Insert(a[i]);
 		b.Print();
+		int max = b.Max();
+		System.out.println(max);
 	} 
 }
