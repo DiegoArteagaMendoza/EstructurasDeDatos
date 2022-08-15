@@ -125,4 +125,17 @@ public class MaxHeap {
 		items[i] = items[j];
 		items[j] = temp;
 	}
+	
+	public static void main(String[] args) {
+		System.out.println("Heap: ");
+		MaxHeap mh = new MaxHeap();
+		mh.insert(3);
+		mh.insert(1);
+		mh.insert(12);
+		mh.insert(9);
+		mh.insert(55);
+		mh.insert(10);
+		mh.buildHeap();
+		mh.printHeap();
+	}
 }
