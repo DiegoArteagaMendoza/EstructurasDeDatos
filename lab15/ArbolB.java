@@ -169,8 +169,9 @@ class ArbolB {
     double val = x.key.length;
     if (!x.leaf) {
       for (int i = 0; i < x.key.length; i++) {
-        if (x.c[i] != null)
+        if (x.c[i] != null) {
           val += totalNodes(x.c[i]);
+        }
       }
     }
     return val;
