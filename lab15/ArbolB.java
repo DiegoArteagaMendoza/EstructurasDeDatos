@@ -165,10 +165,21 @@ class ArbolB {
 
   //Funcion size que retorna la cantidad de valores que el arbol B contiene
   public int size() {
+    return size(root);
+  }
+
+  private int size(NodoArbolB x) {
     int size = 0;
-    for (int i = 0; i < root.c.length; i++) {
-      if (root.c[i] != null) {
-        size += root.c[i].key.length;
+    if (x != null) {
+      for (int i = 0; i < x.n; i++) {
+        size++;
+      }
+      if (!x.leaf) {
+        for (int i = 0; i < x.n; i++) {
+          if (x.c[i] != null) {
+            size += size(x.c[i]);
+          }
+        }
       }
     }
     return size;
