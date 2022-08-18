@@ -50,7 +50,7 @@ class ColaBinomial {
 				prevx = x;
 				x = nextx;
 			}
-			else if(x.key <= nextx.key) { 
+			else if(x.key >= nextx.key) { 
 				x.sibling= nextx.sibling;
 				nextx.BinomialLink(x);
 			}
