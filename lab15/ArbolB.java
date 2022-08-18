@@ -149,18 +149,31 @@ class ArbolB {
     return x;
   }
 
-  // Funcion que define el % de utilizssacion del arbol
+  // Funcion que define el % de utilizacion del arbol
   /*
    * 1. saber cuantos nodos totales tiene el arbol
    * 2. saber cuantos nodos estan siendo utilizados
    * 3. realizar el calculo con regla de 3
    */
   public double utilizacion() {
-    int totalNodes = t;
-    int usedNodes = root.key.length;
-    double porcentUsed = 0;
-    porcentUsed = (usedNodes * 100) / totalNodes;
-    return porcentUsed;
+    // int totalNodes = t;
+    // int usedNodes = root.key.length;
+    // double porcentUsed = 0;
+    // porcentUsed = (usedNodes * 100) / totalNodes;
+    // return porcentUsed;
+    double porcentUsed = (double) size() / totalNodes(root);
+    return porcentUsed*100;
+  }
+
+  private double totalNodes(NodoArbolB x) {
+    double val = x.key.length;
+    if (!x.leaf) {
+      for (int i = 0; i < x.key.length; i++) {
+        if (x.c[i] != null)
+          val += totalNodes(x.c[i]);
+      }
+    }
+    return val;
   }
 
   //Funcion size que retorna la cantidad de valores que el arbol B contiene
